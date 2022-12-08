@@ -103,7 +103,7 @@ function callbackReduce(accumulator, currentValue, array) {
 console.log("--- REDUCE ---")
 console.log(newReduce(numbers, callbackReduce, 1))
 
-// ARRAY PARA TESTE 
+// ARRAY PARA TESTE INDEX OF (PODE SER USADO DE BASE TBM PARA INCLUDES)
 let array = [2, 5, 9];
 (2);     // 0
 (7);     // -1
@@ -111,11 +111,19 @@ let array = [2, 5, 9];
 (2, -1); // -1
 (2, -3); // 0
 
+let teste = [66,11,63,83,11,41]
+
 /* --------------------- INCLUDES --------------------- */
 
 function newIncludes(array, searchElement, fromIndex){
-  
-  if (fromIndex < 0 && Math.abs(fromIndex) > array.length || fromIndex > array.length || Math.abs(fromIndex) == array.length){
+
+  if (!fromIndex){
+    for (let i = 0; i < array.length; i++){
+      if (searchElement === array[i]){
+        return true
+      }
+    }
+  }else if (fromIndex < 0 && Math.abs(fromIndex) > array.length || fromIndex > array.length || fromIndex < 0 && Math.abs(fromIndex) == array.length){
     for (let i = 0; i < array.length; i++){
       if (searchElement === array[i]){
         return true
@@ -131,20 +139,25 @@ function newIncludes(array, searchElement, fromIndex){
 return false
 }
 console.log("--- INCLUDES ---")
-console.log(newIncludes(array, 9, 2))
+console.log(newIncludes(teste, 2, 3))
 
 
 /* --------------------- INDEX OF --------------------- */
 
 function newIndexOf(array, elementoDePesquisa, pontoInicial){
  
-  if (pontoInicial < 0 && Math.abs(pontoInicial) > array.length || pontoInicial > array.length || Math.abs(pontoInicial) == array.length){
+  if(!pontoInicial){
     for (let i = 0; i < array.length; i++){
       if (elementoDePesquisa === array[i]){
         return i
       }
     }
-
+  }else if (pontoInicial < 0 && Math.abs(pontoInicial) > array.length || Math.abs(pontoInicial) == array.length){
+    for (let i = 0; i < array.length; i++){
+      if (elementoDePesquisa === array[i]){
+        return i
+      }
+    }
   }else if(pontoInicial < array.length){
     for (let i = Math.abs(pontoInicial); i < array.length; i++){
       if (elementoDePesquisa === array[i]){
@@ -156,4 +169,4 @@ function newIndexOf(array, elementoDePesquisa, pontoInicial){
   return -1
 }
 console.log("--- INDEX OF ---")
-console.log(newIndexOf(array, 2, -3))
+console.log(newIndexOf(array, 2, 5))
